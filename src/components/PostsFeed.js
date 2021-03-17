@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 import moment from "moment";
 
 import { fetchNext5Posts } from "../store/feed/actions";
@@ -20,9 +22,13 @@ export default function PostFeed() {
       {posts.map((p, index) => {
         return (
           <div key={index}>
-            <h3>{p.title}</h3>
+            <h3>
+              {" "}
+              <Link to={`/post/${p.id}`}>{p.title}</Link>
+            </h3>
             <p>
               {moment(p.createdAt).format("DD-MM-YYYY")}&bull;{" "}
+              {/* you need to sort the date from recent to old */}
               <span>
                 {p.tags.map((t, index) => {
                   return (
